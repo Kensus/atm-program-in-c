@@ -3,9 +3,9 @@ Homework3 is a c program to implement the
     algorithm(user interfave ) and
     sub-algorithms described in  Homework2
 
-Homework4 implements  
+Homework4 implements
   (1)functions to stop using the vending machine,(2)check the balance,
-  and (3)withdraw money from the account. The balance is stored 
+  and (3)withdraw money from the account. The balance is stored
   in a variable and the withdrawal of money changes the balance.
 
 */
@@ -15,11 +15,12 @@ Homework4 implements
 // funtion prototypes (UI)
 void displayWelcomeMessage();
 int getPinNumber();
-void displaySelectionMenu();
+void displayMainMenu();
+double getAccoutDeposit();
 
 // funtion prototypes (Atm functionality)
 double withdraw();
-double balance();
+void checkBalance();
 double mobileTopUp();
 void transactions();
 void quitAtm();
@@ -34,9 +35,7 @@ int main()
     getPinNumber();
 
     // dispaly selection menu given the user pin number
-    displaySelectionMenu();
-
-    
+    displayMainMenu();
 
     return 0;
 }
@@ -51,7 +50,6 @@ void displayWelcomeMessage()
     {
         printf("%s", "Welcome inserts card, thank you (Enter 1 to insert card) \n");
         scanf("%d", &cardStatus);
-                
     }
 }
 
@@ -82,7 +80,7 @@ int getPinNumber()
 }
 
 // dispaly main menu for a choice selection if pin number is correct
-void displaySelectionMenu()
+void displayMainMenu()
 {
     int selection = 0; // store user selection
 
@@ -93,8 +91,9 @@ void displaySelectionMenu()
         printf("%s", "1) Withdraw\n");
         printf("%s", "2) Balance\n");
         printf("%s", "3) Mobile top up\n");
-        printf("%s", "4) Transactions\n");
-        printf("%s", "5) Quit Atm \n");
+        printf("%s", "4) Deposite\n");
+        printf("%s", "5) Transactions\n");
+        printf("%s", "6) Quit Atm \n");
 
         scanf("%d", &selection);
     }
@@ -105,15 +104,18 @@ void displaySelectionMenu()
         withdraw();
         break;
     case 2:
-        balance();
+        checkBalance();
         break;
     case 3:
         mobileTopUp();
         break;
     case 4:
-        transactions();
+        getAccoutDeposit();
         break;
     case 5:
+        transactions();
+        break;
+    case 6:
         quitAtm();
         break;
     default:
@@ -121,6 +123,30 @@ void displaySelectionMenu()
     }
 
     // printf("selection = %d", selection);
+}
+
+// asummed user accout deposit
+double getAccoutDeposit()
+{
+    static double totalAmount = 0.0; // existing amount
+    double deposite = 0.0;           // new deposite
+
+    // prompt user for account deposite
+    while (deposite >= 0)
+    {
+        printf("%s", "Enter deposite amount (or -1 to quit)\n");
+        scanf("%lf", &deposite);
+
+        // check that the deposit is non-negative
+        if (deposite > 0.00)
+        {
+            totalAmount += totalAmount + deposite; // accumulate deposit plus total amount
+        }
+
+        printf("%lf\n", totalAmount);
+    }
+
+    return totalAmount;
 }
 
 // menu functions
@@ -145,16 +171,34 @@ double withdraw()
         scanf("%d", &selection);
     }
     printf("selected action is = %d", selection);
-    // switch(selection)
-    // {
-    //     // switch withdraw selection will be here
-    // }
+    switch (selection)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        break;
+    case 7:
+        break;
+    case 8:
+        displayMainMenu();
+        break;
+    default:
+        break;
+    }
 }
 
-// show balance function
-double balance()
+// show current account balance
+void checkBalance()
 {
-    printf("%s", "Account balance inplementation will be here \n");
+    // just show balance
 }
 double mobileTopUp()
 {
@@ -176,6 +220,5 @@ void transactions()
 void quitAtm()
 {
     // go back to maint menu
-    displaySelectionMenu();
-    
+    displayMainMenu();
 }
