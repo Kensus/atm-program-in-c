@@ -51,7 +51,7 @@ void displayWelcomeMessage()
     {
         printf("%s", "Welcome inserts card, thank you (Enter 1 to insert card) \n");
         scanf("%d", &cardStatus);
-        /* code */
+                
     }
 }
 
@@ -114,6 +114,7 @@ void displaySelectionMenu()
         transactions();
         break;
     case 5:
+        quitAtm();
         break;
     default:
         return;
@@ -170,9 +171,11 @@ void transactions()
     printf("\n+%.2f\n", deposit);
     printf("-%.2f\n", widthraw);
 }
-// quit when user gives quit selection
+
+// go to the main menu when user gives quit selection
 void quitAtm()
 {
     // go back to maint menu
+    displaySelectionMenu();
     
 }
