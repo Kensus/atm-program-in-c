@@ -128,7 +128,7 @@ void displayMainMenu()
 // asummed user accout deposit
 double getAccoutDeposit()
 {
-    static double totalAmount = 0.0; // existing amount
+    double totalAmount = 0.0; // existing amount
     double deposite = 0.0;           // new deposite
 
     // prompt user for account deposite
@@ -138,9 +138,12 @@ double getAccoutDeposit()
         scanf("%lf", &deposite);
 
         // check that the deposit is non-negative
-        if (deposite > 0.00)
+        if (deposite >= 0.00)
         {
-            totalAmount += totalAmount + deposite; // accumulate deposit plus total amount
+            totalAmount += deposite; // accumulate deposit plus total amount
+
+            // a +=b  -> a = a +b;
+            
         }
 
         printf("%lf\n", totalAmount);
@@ -222,3 +225,4 @@ void quitAtm()
     // go back to maint menu
     displayMainMenu();
 }
+
