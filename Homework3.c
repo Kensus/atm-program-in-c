@@ -17,6 +17,7 @@ void displayWelcomeMessage();
 int getPinNumber();
 void displayMainMenu();
 double getAccoutDeposit();
+void printAccountInformation();
 
 // funtion prototypes (Atm functionality)
 double withdraw();
@@ -129,7 +130,7 @@ void displayMainMenu()
 double getAccoutDeposit()
 {
     double totalAmount = 0.0; // existing amount
-    double deposite = 0.0;           // new deposite
+    double deposite = 0.0;    // new deposite
 
     // prompt user for account deposite
     while (deposite >= 0)
@@ -143,7 +144,6 @@ double getAccoutDeposit()
             totalAmount += deposite; // accumulate deposit plus total amount
 
             // a +=b  -> a = a +b;
-            
         }
 
         printf("%lf\n", totalAmount);
@@ -161,7 +161,7 @@ double withdraw()
            selection != 4 && selection != 5 && selection != 6 && selection != 7 &&
            selection != 8)
     {
-        printf("select amount to withdraw\n");
+        printf("\nselect amount to withdraw\n");
         printf("\n%s", "1) 20");
         printf("\n%s", "2) 40");
         printf("\n%s", "3) 60");
@@ -173,11 +173,13 @@ double withdraw()
 
         scanf("%d", &selection);
     }
-    printf("selected action is = %d", selection);
+    printf("selected action is = %d\n", selection);
     switch (selection)
     {
     case 1:
+        printAccountInformation();
         break;
+
     case 2:
         break;
     case 3:
@@ -219,10 +221,51 @@ void transactions()
     printf("-%.2f\n", widthraw);
 }
 
+// How to print account information
+void printAccountInformation()
+{
+    int information = 0; // stote user selection
+    while (information != 1 && information != 2 && information != 3)
+    {
+        printf("Do you need account information?\n");
+        printf("\n%s", "1) Screen");
+        printf("\n%s", "2) Receipt");
+        printf("\n%s", "3) No thankyou\n");
+
+        scanf("%d", &information);
+    }
+    // promt user to select information display option
+    switch (information)
+    {
+    case 1:
+        /* take card -> take money
+        -> print Withdraw :
+         "Thanks for visiting" -> "Welcome again"-> "check again"
+         */
+        printf("%s%s%s%s", "\tOtto\n", "Thanks for visiting\n", "Welcome again\n", "check again\n");
+
+        break;
+    case 2:
+        /* take card -> take money -> take receipt
+         -> print Withdraw :
+          "Thanks for visiting" -> "Welcome again"-> "check again"
+          */
+        printf("%s%s%s%s", "\tOtto\n", "Thanks for visiting\n", "Welcome again\n", "check again\n");
+        break;
+    case 3:
+        /* take card -> take money
+         -> print Withdraw :
+          "Thanks for visiting" -> "Welcome again"-> "check again"
+          */
+        printf("%s%s%s%s", "\tOtto\n", "Thanks for visiting\n", "Welcome again\n", "check again\n");
+        break;
+    default:
+        break;
+    }
+}
 // go to the main menu when user gives quit selection
 void quitAtm()
 {
     // go back to maint menu
     displayMainMenu();
 }
-
