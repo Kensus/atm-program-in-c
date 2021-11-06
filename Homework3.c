@@ -16,15 +16,15 @@ Homework4 implements
 void displayWelcomeMessage();
 int getPinNumber();
 void displayMainMenu();
-double getAccoutDeposit();
+double getAmount();
 void printAccountInformation();
 
 // funtion prototypes (Atm functionality)
-double withdraw();
+double withdrawal();
 void checkBalance();
 double mobileTopUp();
 void transactions();
-void quitAtm();
+void stopAtm();
 
 // function main begins program execution
 int main()
@@ -49,7 +49,7 @@ void displayWelcomeMessage()
     // Prompt user untill the card is isterted
     while (cardStatus != 1)
     {
-        printf("%s", "Welcome inserts card, thank you (Enter 1 to insert card) \n");
+        printf("%s", "\tWelcome inserts card, thank you \n\t(Enter 1 to insert card)\n");
         scanf("%d", &cardStatus);
     }
 }
@@ -60,7 +60,7 @@ int getPinNumber()
     int pinRecord = 1234;
     int pinNumber = 0;
     // prompt user for pin input
-    printf("%s", "Enter pin number and press enter\n");
+    printf("%s", "\tEnter pin number and press enter\n");
     scanf("%d", &pinNumber);
 
     if (pinNumber <= 0) // check if 4 integers
@@ -68,13 +68,13 @@ int getPinNumber()
         // check for negative input
         while (pinNumber != pinRecord)
         {
-            printf("%s", "Enter pin number and press enter\n");
+            printf("%s", "\nEnter pin number and press enter\n");
             scanf("%d", &pinNumber);
         }
     }
     else
     {
-        puts("invalid pin number");
+        puts("\ninvalid pin number\n");
     }
 
     return pinNumber;
@@ -84,25 +84,26 @@ int getPinNumber()
 void displayMainMenu()
 {
     int selection = 0; // store user selection
-
+                       // prompt user for a selection
     while (selection != 1 && selection != 2 && selection != 3 &&
            selection != 4 && selection != 5)
     {
-        printf("%s", "\nMake a selection \n");
-        printf("%s", "1) Withdraw\n");
-        printf("%s", "2) Balance\n");
-        printf("%s", "3) Mobile top up\n");
-        printf("%s", "4) Deposite\n");
-        printf("%s", "5) Transactions\n");
-        printf("%s", "6) Quit Atm \n");
+        printf("%s", "\tSelect\n");
+        printf("%s", "\t[1] Cash\n");
+        printf("%s", "\t[2] Balance\n");
+        printf("%s", "\t[3] Mobile top up\n");
+        printf("%s", "\t[4] Deposite\n");
+        printf("%s", "\t[5] Transactions\n");
+        printf("%s", "\t[6] Stop Atm \n");
 
         scanf("%d", &selection);
     }
-    printf("selected action is = %d\n", selection);
+
+    // switch according to the users selection
     switch (selection)
     {
     case 1:
-        withdraw();
+        withdrawal();
         break;
     case 2:
         checkBalance();
@@ -111,13 +112,13 @@ void displayMainMenu()
         mobileTopUp();
         break;
     case 4:
-        getAccoutDeposit();
+        getAmount();
         break;
     case 5:
         transactions();
         break;
     case 6:
-        quitAtm();
+        stopAtm();
         break;
     default:
         return;
@@ -127,7 +128,7 @@ void displayMainMenu()
 }
 
 // asummed user accout deposit
-double getAccoutDeposit()
+double getAmount()
 {
     double totalAmount = 0.0; // existing amount
     double deposite = 0.0;    // new deposite
@@ -135,7 +136,7 @@ double getAccoutDeposit()
     // prompt user for account deposite
     while (deposite >= 0)
     {
-        printf("%s", "Enter deposite amount (or -1 to quit)\n");
+        printf("%s", "Enter amount (or -1 to quit)\n");
         scanf("%lf", &deposite);
 
         // check that the deposit is non-negative
@@ -146,14 +147,14 @@ double getAccoutDeposit()
             // a +=b  -> a = a +b;
         }
 
-        printf("%lf\n", totalAmount);
+        printf("%.2lf\n", totalAmount);
     }
 
     return totalAmount;
 }
 
 // menu functions
-double withdraw()
+double withdrawal()
 {
     int selection = 0;
     // wait for the user to make a selection
@@ -161,36 +162,53 @@ double withdraw()
            selection != 4 && selection != 5 && selection != 6 && selection != 7 &&
            selection != 8)
     {
-        printf("\nselect amount to withdraw\n");
-        printf("\n%s", "1) 20");
-        printf("\n%s", "2) 40");
-        printf("\n%s", "3) 60");
-        printf("\n%s", "4) 90");
-        printf("\n%s", "5) 140");
-        printf("\n%s", "6) 240");
-        printf("\n%s", "7) Other amount");
-        printf("\n%s", "8) Start\n");
+        printf("\tWithdrawal\n");
+        printf("\n%s", "\t[1] 20");
+        printf("\n%s", "\t[2] 40");
+        printf("\n%s", "\t[3] 60");
+        printf("\n%s", "\t[4] 90");
+        printf("\n%s", "\t[5] 140");
+        printf("\n%s", "\t[6] 240");
+        printf("\n%s", "\t[7] Other amount");
+        printf("\n%s", "\t[8] Start\n");
 
         scanf("%d", &selection);
     }
-    printf("selected action is = %d\n", selection);
+    // switch user selection
     switch (selection)
     {
     case 1:
+        double selection_1 = 20.0; // select amount
+                                   // withdrawal = getAccountDeposit() - 20;
+        printf("Amount :\t EUR %.2lf\n", selection_1);
         printAccountInformation();
         break;
 
     case 2:
+        double selection_2 = 40.0; // select amount
+        printf("Amount :\t EUR %.2lf\n", selection_2);
         break;
     case 3:
+        double selection_3 = 60.0; // select amount
+        printf("Amount :\t EUR %.2lf\n", selection_3);
         break;
     case 4:
+        double selection_4 = 90.0; // select amount
+        printf("Amount :\t EUR %.2lf\n", selection_4);
         break;
     case 5:
+        double selection_5 = 140.0; // select amount
+        printf("Amount :\t EUR %.2lf\n", selection_5);
         break;
     case 6:
+        double selection_6 = 240.0; // select amount
+        printf("Amount :\t EUR %.2lf\n", selection_6);
         break;
     case 7:
+        // promt user to enter a new amount 
+        double selection_7 = getAmount();
+        printf("Other amount :\t EUR %.2lf\n", selection_7);
+        // getWithdrawalAmount
         break;
     case 8:
         displayMainMenu();
@@ -199,10 +217,28 @@ double withdraw()
         break;
     }
 }
+// // other amount withdrawals
+// double getOtherAmount()
+// {
+
+//     double amount = 0.0; // store user amount input
+//     while (amount >= 0)
+//     {
+//         /* code */
+//     }
+
+//     printf("\tEnter other amount\n");
+//     scanf("%lf",&amount);
+
+// }
 
 // show current account balance
 void checkBalance()
 {
+    // balance =  amount deposited - withdrawal
+    double balance = 0.0; // current amount
+
+    printf("Amount:\tEUR %.2lf\n", balance);
     // just show balance
 }
 double mobileTopUp()
@@ -228,9 +264,9 @@ void printAccountInformation()
     while (information != 1 && information != 2 && information != 3)
     {
         printf("Do you need account information?\n");
-        printf("\n%s", "1) Screen");
-        printf("\n%s", "2) Receipt");
-        printf("\n%s", "3) No thankyou\n");
+        printf("\n%s", "\t[1] Screen");
+        printf("\n%s", "\t[2] Receipt");
+        printf("\n%s", "\t[3] No thankyou\n");
 
         scanf("%d", &information);
     }
@@ -264,7 +300,7 @@ void printAccountInformation()
     }
 }
 // go to the main menu when user gives quit selection
-void quitAtm()
+void stopAtm()
 {
     // go back to maint menu
     displayMainMenu();
